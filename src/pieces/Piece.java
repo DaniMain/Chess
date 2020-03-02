@@ -4,19 +4,52 @@ import java.util.Set;
 
 import board.*;
 import main.*;
+import print.Print;
 
 public abstract class Piece {
 	
 	private String name;
 	private String sym;
-	private String coordinate;
-	private Set<Square> squaresTo;
+	private char row;
+	private char column;
+	private boolean isWhite;
+	private Set<Square> moveTo;
+	private Set<Square> takeTo;
 	
-	public Piece(String name, String sym, String coordinate){
+	public Piece(String name, String sym, boolean isWhite, String coordinate){
 		this.name = name;
 		this.sym = sym;
-		this.coordinate = coordinate;
-		this.squaresTo = new HashSet<>();
+		this.isWhite = isWhite;
+		coordinate = coordinate.toUpperCase();
+		this.row = getRow(coordinate);
+		this.column = getColumn(coordinate);
+		this.moveTo = new HashSet<>();
+		this.takeTo = new HashSet<>();
+	}
+	
+	abstract Set<Square> searchToMove(Match m);
+	
+	abstract Set<Square> searchToTake(Match m);
+
+	abstract void move(Match m, String coordinate);
+	
+	abstract void take(Match m, String coordinate);
+	
+	public String makeCoordinate(int row, int column){
+		String[] columns = {"A", "B", "C", "D", "E", "F", "G", "H"};
+		return columns[column-1].concat(String.valueOf(row));
+	}
+	
+	public char[] getCoordinate(String coordinate){
+		return coordinate.toCharArray();
+	}
+	
+	public char getRow(String coordinate){
+		return getCoordinate(coordinate)[1];
+	}
+	
+	public char getColumn(String coordinate){
+		return getCoordinate(coordinate)[0];
 	}
 	
 	public String getName() {
@@ -35,25 +68,64 @@ public abstract class Piece {
 		this.sym = sym;
 	}
 
-	public String getCoordinate() {
-		return coordinate;
+	public boolean isWhite() {
+		return isWhite;
 	}
 
-	public void setCoordinate(String coordinate) {
-		this.coordinate = coordinate;
+	public void setIsWhite(boolean isWhite) {
+		this.isWhite = isWhite;
 	}
 
-	public Set<Square> getSquaresTo() {
-		return squaresTo;
+	public char getRow() {
+		return row;
 	}
 
-	public void setSquaresTo(Set<Square> squaresTo) {
-		this.squaresTo = squaresTo;
+	public void setRow(char row) {
+		this.row = row;
+	}
+
+	public char getColumn() {
+		return column;
+	}
+
+	public void setColumn(char column) {
+		this.column = column;
+	}
+	
+	public int getRowInt(){
+		return Integer.parseInt(String.valueOf(this.getRow()));
+	}
+	
+	public int getColumnInt(){
+		return this.getColumn()-64;
+	}
+
+	public Set<Square> getMoveTo() {
+		return moveTo;
+	}
+
+	public void setMoveTo(Set<Square> moveTo) {
+		this.moveTo = moveTo;
+	}
+
+	public Set<Square> getTakeTo() {
+		return takeTo;
+	}
+
+	public void setTakeTo(Set<Square> takeTo) {
+		this.takeTo = takeTo;
 	}
 
 	@Override
 	public String toString() {
-		return "Piece [name=" + name + ", symbol=" + sym + "]";
+		String piece = "Piece [name = " + name+ " ";
+		if (this.isWhite())
+			piece += "white, ";
+		else
+			piece += "black, ";
+		piece += "in ";
+		piece += this.makeCoordinate(this.getRowInt(), this.getColumnInt()) + "]";
+		return piece;
 	}
 
 	@Override
@@ -80,7 +152,5 @@ public abstract class Piece {
 			return false;
 		return true;
 	}
-
-	abstract void move(Match m, String coordinate);
 
 }

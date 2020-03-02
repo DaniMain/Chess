@@ -9,10 +9,12 @@ public class Square {
 	
 	private String coordinate;
 	private Piece pieceIn;
+	private boolean hasPiece;
 	
 	public Square(String coordinate){
 		this.coordinate = coordinate;
 		this.pieceIn = null;
+		this.hasPiece = false;
 	}
 
 	public String getCoordinate() {
@@ -29,6 +31,18 @@ public class Square {
 
 	public void setPieceIn(Piece pieceIn) {
 		this.pieceIn = pieceIn;
+		if(pieceIn!=null)
+			this.setHasPiece(true);
+		else
+			this.setHasPiece(false);
+	}
+
+	public boolean hasPiece() {
+		return hasPiece;
+	}
+
+	public void setHasPiece(boolean hasPiece) {
+		this.hasPiece = hasPiece;
 	}
 
 	@Override
@@ -71,14 +85,14 @@ public class Square {
 		if (isA)
 			sb2.append("|");
 		if ((coordinate[0]+coordinate[1])%2==0){
-			sb2.append("#");
+			sb2.append(" ");
 			try{
 				sb2.append(this.getPieceIn().getSym());
 			}
 			catch(Exception e){
 				sb2.append(" ");
 			}
-			sb2.append("#|");			
+			sb2.append(" |");			
 		}
 		else{
 			sb2.append(" ");
@@ -92,15 +106,15 @@ public class Square {
 		}
 		finalList.add(sb2.toString());
 		
-		/* third row */
-		StringBuilder sb3 = new StringBuilder();
-		if (isA)
-			sb3.append("|");
-		if ((coordinate[0]+coordinate[1])%2==0)
-			sb3.append("###|");
-		else
-			sb3.append("   |");
-		finalList.add(sb3.toString());
+//		/* third row */
+//		StringBuilder sb3 = new StringBuilder();
+//		if (isA)
+//			sb3.append("|");
+//		if ((coordinate[0]+coordinate[1])%2==0)
+//			sb3.append("###|");
+//		else
+//			sb3.append("   |");
+//		finalList.add(sb3.toString());
 		
 		/* final row */
 		StringBuilder sb4 = new StringBuilder();

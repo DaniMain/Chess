@@ -3,7 +3,13 @@ package board;
 import java.util.HashMap;
 import java.util.Map;
 
+import pieces.Bishop;
+import pieces.King;
+import pieces.Knight;
+import pieces.Pawn;
 import pieces.Piece;
+import pieces.Queen;
+import pieces.Rook;
 import print.Print;
 
 public class ChessBoard {
@@ -12,14 +18,14 @@ public class ChessBoard {
 	
 	public ChessBoard(){
 		this.board = new HashMap<String, Map<String,Square>>();
-		Map<String, Square> line8 = new HashMap<>();
-		Map<String, Square> line7 = new HashMap<>();
-		Map<String, Square> line6 = new HashMap<>();
-		Map<String, Square> line5 = new HashMap<>();
-		Map<String, Square> line4 = new HashMap<>();
-		Map<String, Square> line3 = new HashMap<>();
-		Map<String, Square> line2 = new HashMap<>();
 		Map<String, Square> line1 = new HashMap<>();
+		Map<String, Square> line2 = new HashMap<>();
+		Map<String, Square> line3 = new HashMap<>();
+		Map<String, Square> line4 = new HashMap<>();
+		Map<String, Square> line5 = new HashMap<>();
+		Map<String, Square> line6 = new HashMap<>();
+		Map<String, Square> line7 = new HashMap<>();
+		Map<String, Square> line8 = new HashMap<>();
 		
 		/* LINE 1 */
 		line1.put("A", new Square("A1"));
@@ -109,14 +115,115 @@ public class ChessBoard {
 		this.board.put("6", line6);
 		this.board.put("7", line7);
 		this.board.put("8", line8);
+		
+		createMatch();
+	}
+	
+	private void createMatch(){
+		/*PAWNS*/
+		/* white */
+		Piece wa = new Pawn("pawn", "P", true, "A2");
+		Piece wb = new Pawn("pawn", "P", true, "B2");
+		Piece wc = new Pawn("pawn", "P", true, "C2");
+		Piece wd = new Pawn("pawn", "P", true, "D2");
+		Piece we = new Pawn("pawn", "P", true, "E2");
+		Piece wf = new Pawn("pawn", "P", true, "F2");
+		Piece wg = new Pawn("pawn", "P", true, "G2");
+		Piece wh = new Pawn("pawn", "P", true, "H2");
+		/* black */
+		Piece ba = new Pawn("pawn", "p", false, "A7");
+		Piece bb = new Pawn("pawn", "p", false, "B7");
+		Piece bc = new Pawn("pawn", "p", false, "C7");
+		Piece bd = new Pawn("pawn", "p", false, "D7");
+		Piece be = new Pawn("pawn", "p", false, "E7");
+		Piece bf = new Pawn("pawn", "p", false, "F7");
+		Piece bg = new Pawn("pawn", "p", false, "G7");
+		Piece bh = new Pawn("pawn", "p", false, "H7");
+
+		/* ROOKS */
+		/* white */
+		Piece wra = new Rook("rook", "R", true, "A1");
+		Piece wrh = new Rook("rook", "R", true, "H1");
+		/* black */
+		Piece bra = new Rook("rook", "r", false, "A8");
+		Piece brh = new Rook("rook", "r", false, "H8");
+		
+		/* KNIGTHS */
+		/* white */
+		Piece wkb = new Knight("knight", "N", true, "B1");
+		Piece wkg = new Knight("knight", "N", true, "G1");
+		/* black */
+		Piece bkb = new Knight("knight", "n", false, "B8");
+		Piece bkg = new Knight("knight", "n", false, "G8");
+		
+		/* BISHOPS */
+		/* white */
+		Piece wbc = new Bishop("bishop", "B", true, "C1");
+		Piece wbf = new Bishop("bishop", "B", true, "F1");
+		/* black */
+		Piece bbc = new Bishop("bishop", "b", false, "C8");
+		Piece bbf = new Bishop("bishop", "b", false, "F8");
+		
+		/* QUEEN */
+		/* white */
+		Piece wq = new Queen("queen", "Q", true, "D1");
+		/* black */
+		Piece bq = new Queen("queen", "q", false, "D8");
+		
+		/* KING */
+		/* white */
+		Piece wk = new King("king", "K", true, "E1");
+		/* black */
+		Piece bk = new King("king", "k", false, "E8");
+		
+		/* set all piece at its square */
+		/* white */
+		this.setSquare("A1", wra);
+		this.setSquare("B1", wkb);
+		this.setSquare("C1", wbc);
+		this.setSquare("D1", wq);
+		this.setSquare("E1", wk);
+		this.setSquare("F1", wbf);
+		this.setSquare("G1", wkg);
+		this.setSquare("H1", wrh);
+		this.setSquare("A2", wa);
+		this.setSquare("B2", wb);
+		this.setSquare("C2", wc);
+		this.setSquare("D2", wd);
+		this.setSquare("E2", we);
+		this.setSquare("F2", wf);
+		this.setSquare("G2", wg);
+		this.setSquare("H2", wh);
+		/* black */
+		this.setSquare("A8", bra);
+		this.setSquare("B8", bkb);
+		this.setSquare("C8", bbc);
+		this.setSquare("D8", bq);
+		this.setSquare("E8", bk);
+		this.setSquare("F8", bbf);
+		this.setSquare("G8", bkg);
+		this.setSquare("H8", brh);
+		this.setSquare("A7", ba);
+		this.setSquare("B7", bb);
+		this.setSquare("C7", bc);
+		this.setSquare("D7", bd);
+		this.setSquare("E7", be);
+		this.setSquare("F7", bf);
+		this.setSquare("G7", bg);
+		this.setSquare("H7", bh);
+	}
+	
+	public void setSquare(String coordinate, Piece piece){
+		String row = coordinate.substring(1, 2);
+		String column = coordinate.substring(0, 1).toUpperCase();
+		Map<String, Square> newRow = this.board.get(row);
+		Square toSet = newRow.get(column);
+		toSet.setPieceIn(piece);
+		this.board.put(row, newRow);
 	}
 
 	public Map<String, Map<String, Square>> getBoard() {
 		return board;
-	}
-
-	public void setBoard(Map<String, Map<String, Square>> board) {
-		this.board = board;
 	}
 	
 	public Piece getPiece(String coordinate){
@@ -131,16 +238,16 @@ public class ChessBoard {
 		return board.get(row).get(column);
 	}
 	
-	public void setSquare(String coordinate, Square newSquare){
-		String row = coordinate.substring(1, 2);
-		String column = coordinate.substring(0, 1).toUpperCase();
-		Map<String, Square> newRow = this.board.get(row);
-		newRow.put(column, newSquare);
-		this.board.put(row, newRow);
-	}
+//	public void setSquare(String coordinate, Square newSquare){
+//		String row = coordinate.substring(1, 2);
+//		String column = coordinate.substring(0, 1).toUpperCase();
+//		Map<String, Square> newRow = this.board.get(row);
+//		newRow.put(column, newSquare);
+//		this.board.put(row, newRow);
+//	}
 	
 	public void printBoard(){
-		int i8 = this.getSquare("A8").listToPrint().get(0).length();
+		int i8 = this.getSquare("A8").listToPrint().size();
 		for (int i=0;i<i8;i++){
 			if (i==2)
 				Print.print("8");
