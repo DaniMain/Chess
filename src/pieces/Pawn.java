@@ -12,7 +12,7 @@ public class Pawn extends Piece {
 	}
 
 	@Override
-	Set<Square> searchToMove(Match m) {
+	void searchToMove(Match m) {
 		Set<Square> toMove = new HashSet<>();
 		boolean stopSearching = false;
 		/* if white */
@@ -67,11 +67,11 @@ public class Pawn extends Piece {
 				catch(Exception e){}
 			}		
 		}
-		return toMove;
+		this.setMoveTo(toMove);
+		searchToTakePawn(m);
 	}
 
-	@Override
-	Set<Square> searchToTake(Match m) {
+	private void searchToTakePawn(Match m) {
 		Set<Square> toTake = new HashSet<>();
 		/* if white */
 		if (this.isWhite()){
@@ -115,7 +115,7 @@ public class Pawn extends Piece {
 			}
 			catch(Exception e){}
 		}
-		return toTake;
+		this.setTakeTo(toTake);
 	}
 
 	@Override

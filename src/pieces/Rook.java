@@ -1,5 +1,6 @@
 package pieces;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import board.Square;
@@ -13,15 +14,59 @@ public class Rook extends Piece {
 	}
 
 	@Override
-	Set<Square> searchToMove(Match m) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	Set<Square> searchToTake(Match m) {
-		// TODO Auto-generated method stub
-		return null;
+	void searchToMove(Match m) {
+		Set<Square> toMove = new HashSet<>();
+		Set<Square> toTake = new HashSet<>();
+		/* search up */
+		for (int i=this.getRowInt()+1;i<=8;i++){
+			String newCoordinate = this.makeCoordinate(i, this.getColumnInt());
+			Square square = m.getBoard().getSquare(newCoordinate);
+			if (!square.hasPiece()){
+				toMove.add(square);
+			}
+			else{
+				toTake.add(square);
+				break;
+			}
+		}
+		/* search down */
+		for (int i=this.getRowInt()+1;i>=1;i--){
+			String newCoordinate = this.makeCoordinate(i, this.getColumnInt());
+			Square square = m.getBoard().getSquare(newCoordinate);
+			if (!square.hasPiece()){
+				toMove.add(square);
+			}
+			else{
+				toTake.add(square);
+				break;
+			}
+		}
+		/* search right */
+		for (int i=this.getColumn()+1;i<=8;i++){
+			String newCoordinate = this.makeCoordinate(this.getRowInt(),i);
+			Square square = m.getBoard().getSquare(newCoordinate);
+			if (!square.hasPiece()){
+				toMove.add(square);
+			}
+			else{
+				toTake.add(square);
+				break;
+			}
+		}
+		/* search left */
+		for (int i=this.getColumn()+1;i>=1;i--){
+			String newCoordinate = this.makeCoordinate(this.getRowInt(),i);
+			Square square = m.getBoard().getSquare(newCoordinate);
+			if (!square.hasPiece()){
+				toMove.add(square);
+			}
+			else{
+				toTake.add(square);
+				break;
+			}
+		}		
+		this.setMoveTo(toMove);
+		this.setTakeTo(toTake);
 	}
 
 	@Override

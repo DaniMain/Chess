@@ -1,5 +1,6 @@
 package pieces;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import board.Square;
@@ -13,15 +14,12 @@ public class King extends Piece {
 	}
 
 	@Override
-	Set<Square> searchToMove(Match m) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	Set<Square> searchToTake(Match m) {
-		// TODO Auto-generated method stub
-		return null;
+	void searchToMove(Match m) {
+		Set<Square> toMove = new HashSet<>();
+		Set<Square> toTake = new HashSet<>();
+		
+		this.setMoveTo(toMove);
+		this.setTakeTo(toTake);
 	}
 
 	@Override

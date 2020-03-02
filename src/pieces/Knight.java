@@ -1,5 +1,6 @@
 package pieces;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import board.Square;
@@ -13,15 +14,31 @@ public class Knight extends Piece {
 	}
 
 	@Override
-	Set<Square> searchToMove(Match m) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	Set<Square> searchToTake(Match m) {
-		// TODO Auto-generated method stub
-		return null;
+	void searchToMove(Match m) {
+		Set<Square> toMove = new HashSet<>();
+		Set<Square> toTake = new HashSet<>();
+		int[] rowCoordinate = {this.getRowInt()+2, this.getRowInt()+2, this.getRowInt()+1,
+				this.getRowInt()-1, this.getRowInt()-2, this.getRowInt()-2, this.getRowInt()-1,
+				this.getRowInt()+1};
+		int[] columnsCoordinate = {this.getColumnInt()-1, this.getColumnInt()+1, 
+				this.getColumnInt()+2, this.getColumnInt()+2, this.getColumnInt()+1,
+				this.getColumnInt()-1, this.getColumnInt()-2, this.getColumnInt()-2};
+		for (int i=0;i<8;i++){
+			int rowC = rowCoordinate[i];
+			int columnC = columnsCoordinate[i];
+			try{
+				Square square = m.getBoard().getSquare(String.valueOf(rowC).concat(String.valueOf(columnC)));
+				if (!square.hasPiece()){
+					toMove.add(square);
+				}
+				else{
+					toTake.add(square);
+				}
+			}
+			catch(Exception e){}
+		}
+		this.setMoveTo(toMove);
+		this.setTakeTo(toTake);
 	}
 
 	@Override

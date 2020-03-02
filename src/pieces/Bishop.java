@@ -1,5 +1,6 @@
 package pieces;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import board.Square;
@@ -13,15 +14,83 @@ public class Bishop extends Piece {
 	}
 
 	@Override
-	Set<Square> searchToMove(Match m) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	Set<Square> searchToTake(Match m) {
-		// TODO Auto-generated method stub
-		return null;
+	void searchToMove(Match m) {
+		Set<Square> toMove = new HashSet<>();
+		Set<Square> toTake = new HashSet<>();
+		/* search up right */
+		for (int i=this.getRowInt()+1;i<=8;i++){
+			int newR = this.getRowInt()+i;
+			int newC = this.getColumnInt()+i;
+			if (newC<=8){
+				String newCoordinate = this.makeCoordinate(newR, newC);
+				Square square = m.getBoard().getSquare(newCoordinate);
+				if (!square.hasPiece()){
+					toMove.add(square);
+				}
+				else{
+					toTake.add(square);
+					break;
+				}
+			}
+			else
+				break;
+		}
+		/* search up left */
+		for (int i=this.getRowInt()+1;i<=8;i++){
+			int newR = this.getRowInt()+i;
+			int newC = this.getColumnInt()-i;
+			if (newC>=1){
+				String newCoordinate = this.makeCoordinate(newR, newC);
+				Square square = m.getBoard().getSquare(newCoordinate);
+				if (!square.hasPiece()){
+					toMove.add(square);
+				}
+				else{
+					toTake.add(square);
+					break;
+				}
+			}
+			else
+				break;
+		}		
+		/* search down right */
+		for (int i=this.getRowInt()-1;i>=1;i--){
+			int newR = this.getRowInt()-i;
+			int newC = this.getColumnInt()+i;
+			if (newC<=8){
+				String newCoordinate = this.makeCoordinate(newR, newC);
+				Square square = m.getBoard().getSquare(newCoordinate);
+				if (!square.hasPiece()){
+					toMove.add(square);
+				}
+				else{
+					toTake.add(square);
+					break;
+				}
+			}
+			else
+				break;
+		}
+		/* search down left */
+		for (int i=this.getRowInt()-1;i>=1;i--){
+			int newR = this.getRowInt()-i;
+			int newC = this.getColumnInt()-i;
+			if (newC>=1){
+				String newCoordinate = this.makeCoordinate(newR, newC);
+				Square square = m.getBoard().getSquare(newCoordinate);
+				if (!square.hasPiece()){
+					toMove.add(square);
+				}
+				else{
+					toTake.add(square);
+					break;
+				}
+			}
+			else
+				break;
+		}
+		this.setMoveTo(toMove);
+		this.setTakeTo(toTake);		
 	}
 
 	@Override

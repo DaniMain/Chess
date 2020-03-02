@@ -4,7 +4,6 @@ import java.util.Set;
 
 import board.*;
 import main.*;
-import print.Print;
 
 public abstract class Piece {
 	
@@ -27,9 +26,7 @@ public abstract class Piece {
 		this.takeTo = new HashSet<>();
 	}
 	
-	abstract Set<Square> searchToMove(Match m);
-	
-	abstract Set<Square> searchToTake(Match m);
+	abstract void searchToMove(Match m);
 
 	abstract void move(Match m, String coordinate);
 	
