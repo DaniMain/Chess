@@ -19,7 +19,10 @@ public class Test {
 
 	public static void main(String[] args) {
 //		proviamolacasella();
-		proviamolaprintdellascacchiera();
+//		proviamolaprintdellascacchiera();
+		String move = ("f5");
+		Print.println(move.substring(move.length()-2,move.length()));
+		Print.println(move.substring(0,move.length()-2));
 //		System.out.println(ANSI_RED + "ERROR MESSAGE IN RED" + ANSI_RESET);
 	}
 

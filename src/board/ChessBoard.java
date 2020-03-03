@@ -1,6 +1,7 @@
 package board;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -179,7 +180,9 @@ public class ChessBoard {
 		/* black */
 		Piece bk = new King("king", "k", false, "E8");
 
-		/* set all piece in pieces */
+		/* set all piece in its pieces set*/
+		this.wpieces = new HashSet<>();
+		this.bpieces = new HashSet<>();
 		/* white */
 		this.wpieces.add(wa);
 		this.wpieces.add(wb);
