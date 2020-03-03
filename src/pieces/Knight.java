@@ -32,7 +32,9 @@ public class Knight extends Piece {
 					toMove.add(square);
 				}
 				else{
-					toTake.add(square);
+					if (square.getPieceIn().isWhite()!=this.isWhite()){
+						toTake.add(square);
+					}
 				}
 			}
 			catch(Exception e){}

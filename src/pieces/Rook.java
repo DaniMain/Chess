@@ -25,7 +25,9 @@ public class Rook extends Piece {
 				toMove.add(square);
 			}
 			else{
-				toTake.add(square);
+				if (square.getPieceIn().isWhite()!=this.isWhite()){
+					toTake.add(square);
+				}
 				break;
 			}
 		}
@@ -37,7 +39,9 @@ public class Rook extends Piece {
 				toMove.add(square);
 			}
 			else{
-				toTake.add(square);
+				if (square.getPieceIn().isWhite()!=this.isWhite()){
+					toTake.add(square);
+				}
 				break;
 			}
 		}
@@ -49,7 +53,9 @@ public class Rook extends Piece {
 				toMove.add(square);
 			}
 			else{
-				toTake.add(square);
+				if (square.getPieceIn().isWhite()!=this.isWhite()){
+					toTake.add(square);
+				}
 				break;
 			}
 		}
@@ -61,10 +67,12 @@ public class Rook extends Piece {
 				toMove.add(square);
 			}
 			else{
-				toTake.add(square);
+				if (square.getPieceIn().isWhite()!=this.isWhite()){
+					toTake.add(square);
+				}
 				break;
 			}
-		}		
+		}
 		this.setMoveTo(toMove);
 		this.setTakeTo(toTake);
 	}

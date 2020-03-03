@@ -80,7 +80,9 @@ public class Pawn extends Piece {
 			try{
 				Square dl = m.getBoard().getSquare(DLcoordinate);
 				if (!dl.hasPiece()){
-					toTake.add(dl);
+					if (dl.getPieceIn().isWhite()!=this.isWhite()){
+						toTake.add(dl);
+					}
 				}
 			}
 			catch(Exception e){}
@@ -89,7 +91,9 @@ public class Pawn extends Piece {
 			try{
 				Square dr = m.getBoard().getSquare(DRcoordinate);
 				if (!dr.hasPiece()){
-					toTake.add(dr);
+					if (dr.getPieceIn().isWhite()!=this.isWhite()){
+						toTake.add(dr);
+					}
 				}
 			}
 			catch(Exception e){}
@@ -101,7 +105,9 @@ public class Pawn extends Piece {
 			try{
 				Square dl = m.getBoard().getSquare(DLcoordinate);
 				if (!dl.hasPiece()){
-					toTake.add(dl);
+					if (dl.getPieceIn().isWhite()!=this.isWhite()){
+						toTake.add(dl);
+					}
 				}
 			}
 			catch(Exception e){}
@@ -110,7 +116,9 @@ public class Pawn extends Piece {
 			try{
 				Square dr = m.getBoard().getSquare(DRcoordinate);
 				if (!dr.hasPiece()){
-					toTake.add(dr);
+					if (dr.getPieceIn().isWhite()!=this.isWhite()){
+						toTake.add(dr);
+					}
 				}
 			}
 			catch(Exception e){}

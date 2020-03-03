@@ -2,6 +2,7 @@ package board;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import pieces.Bishop;
 import pieces.King;
@@ -15,6 +16,8 @@ import print.Print;
 public class ChessBoard {
 	
 	private Map<String, Map<String, Square>> board;
+	private Set<Piece> wpieces;
+	private Set<Piece> bpieces;
 	
 	public ChessBoard(){
 		this.board = new HashMap<String, Map<String,Square>>();
@@ -175,6 +178,42 @@ public class ChessBoard {
 		Piece wk = new King("king", "K", true, "E1");
 		/* black */
 		Piece bk = new King("king", "k", false, "E8");
+
+		/* set all piece in pieces */
+		/* white */
+		this.wpieces.add(wa);
+		this.wpieces.add(wb);
+		this.wpieces.add(wc);
+		this.wpieces.add(wd);
+		this.wpieces.add(we);
+		this.wpieces.add(wf);
+		this.wpieces.add(wg);
+		this.wpieces.add(wh);
+		this.wpieces.add(wra);
+		this.wpieces.add(wkb);
+		this.wpieces.add(wbc);
+		this.wpieces.add(wq);
+		this.wpieces.add(wk);
+		this.wpieces.add(wbf);
+		this.wpieces.add(wkg);
+		this.wpieces.add(wrh);
+		/* black */
+		this.bpieces.add(ba);
+		this.bpieces.add(bb);
+		this.bpieces.add(bc);
+		this.bpieces.add(bd);
+		this.bpieces.add(be);
+		this.bpieces.add(bf);
+		this.bpieces.add(bg);
+		this.bpieces.add(bh);
+		this.bpieces.add(bra);
+		this.bpieces.add(bkb);
+		this.bpieces.add(bbc);
+		this.bpieces.add(bq);
+		this.bpieces.add(bk);
+		this.bpieces.add(bbf);
+		this.bpieces.add(bkg);
+		this.bpieces.add(brh);
 		
 		/* set all piece at its square */
 		/* white */
@@ -226,6 +265,14 @@ public class ChessBoard {
 		return board;
 	}
 	
+	public Set<Piece> getWhitePieces() {
+		return wpieces;
+	}
+	
+	public Set<Piece> getBlackPieces() {
+		return bpieces;
+	}
+
 	public Piece getPiece(String coordinate){
 		String row = coordinate.substring(1, 2);
 		String column = coordinate.substring(0, 1).toUpperCase();
