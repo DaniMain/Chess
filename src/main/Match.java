@@ -98,21 +98,21 @@ public class Match {
 	}
 
 	private boolean checkNewPosition(Set<Square> possibleSquare, String coordinate) {
-		for (Square s: possibleSquare){
+		for (@SuppressWarnings("unused") Square s: possibleSquare){
 			//to-do
 		}
 		return false;
 	}
 
-	private boolean playWhite(String move) {
-		this.setWhiteTime(false);
-		return move.equals("d4");
-	}
-
-	private boolean playBlack(String move) {
-		this.setWhiteTime(true);
-		return move.equals("d4");
-	}
+//	private boolean playWhite(String move) {
+//		this.setWhiteTime(false);
+//		return move.equals("d4");
+//	}
+//
+//	private boolean playBlack(String move) {
+//		this.setWhiteTime(true);
+//		return move.equals("d4");
+//	}
 
 	public ChessBoard getBoard() {
 		return board;

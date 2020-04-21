@@ -1,8 +1,5 @@
 package main;
 
-import board.ChessBoard;
-import pieces.Pawn;
-import pieces.Piece;
 import print.Print;
 
 public class Test {
@@ -26,16 +23,16 @@ public class Test {
 //		System.out.println(ANSI_RED + "ERROR MESSAGE IN RED" + ANSI_RESET);
 	}
 
-	private static void proviamolacasella(){
-		ChessBoard board = new ChessBoard();
-		Print.println(board.getPiece("b4"));
-		Piece pawn = new Pawn("pawn", "p", true, "b4");
-		board.setSquare("b4", pawn);
-		Print.println(board.getPiece("b4"));
-	}
-
-	private static void proviamolaprintdellascacchiera(){
-		ChessBoard board = new ChessBoard();
-		board.printBoard();
-	}
+//	private static void proviamolacasella(){
+//		ChessBoard board = new ChessBoard();
+//		Print.println(board.getPiece("b4"));
+//		Piece pawn = new Pawn("pawn", "p", true, "b4");
+//		board.setSquare("b4", pawn);
+//		Print.println(board.getPiece("b4"));
+//	}
+//
+//	private static void proviamolaprintdellascacchiera(){
+//		ChessBoard board = new ChessBoard();
+//		board.printBoard();
+//	}
 }
